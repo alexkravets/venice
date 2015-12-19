@@ -1,0 +1,104 @@
+/* Mobile ------------------------------------------------------------------ */
+$mobile: "screen and (max-width:899px)";
+@media #{$mobile} {
+/* Layout ------------------------------------------------------------------ */
+  .container {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .header {
+    text-align: center;
+    padding: 2em 3em 1em;
+  }
+
+  .header-image {
+    display: inline-block;
+  }
+
+  .header-image img {
+    width: 6em;
+    border-radius: 3.5em;
+    border: 0.5em solid transparent;
+  }
+
+  .header-tagline {
+    margin: 1em 0 1.75em;
+    line-height: 1.4;
+  }
+
+  .header-menu {
+    margin-bottom: 1em;
+  }
+
+  .social-menu a {
+    font-size: 1.3em;
+    padding: 0 0.15em;
+  }
+
+  .header-menu a {
+    display: block;
+    line-height: 3em;
+    margin-bottom: 1px;
+  }
+
+  .journal-page {
+    margin-bottom: 0.5em;
+    padding: 1.4em 0.5em 0;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .journal-page-header h1 {
+    margin-top: 0;
+  }
+
+  .journal-page-body {
+    margin-top: -1em;
+  }
+
+  .journal-page-body footer a {
+    margin-right: -0.5em;
+  }
+
+/* Theme ------------------------------------------------------------------- */
+  body {
+    background-color: $secondary-color;
+  }
+
+  .header {
+    color: $white-color;
+    background-color: $theme-color;
+  }
+
+  .header-image img {
+    border-color: $white-color;
+  }
+
+  .header-tagline a {
+    color: $white-color;
+  }
+
+  .header-menu a {
+    font-weight: 600;
+    color: $white-color;
+    background-color: rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      text-decoration: none;
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+  }
+
+  .social-menu a {
+    &:hover {
+      color: rgba(0, 0, 0, 0.075);
+    }
+  }
+
+  .journal-page {
+    background-color: $white-color;
+  }
+}

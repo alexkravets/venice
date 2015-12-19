@@ -1,0 +1,7 @@
+<%= javascript_include_tag :application %>
+
+<%= yield :javascript %>
+
+<% if Rails.env.production? %>
+  <% # analytics code to be added here %>
+<% end %>

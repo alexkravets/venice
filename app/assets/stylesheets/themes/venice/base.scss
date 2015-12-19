@@ -1,0 +1,163 @@
+/* Base -------------------------------------------------------------------- */
+
+/* Layout ------------------------------------------------------------------ */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: $base-font-family;
+  font-size: 14px;
+}
+
+h1, h2, h3 {
+  margin: 1.4em 0 0;
+  line-height: 1.2em;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
+h3 {
+  font-size: 1.15em;
+}
+
+p {
+  margin: 1.4em 0;
+  line-height: 1.4em;
+}
+
+blockquote {
+  font-family: georgia, serif;
+  font-style: italic;
+  font-size: 1.25em;
+  margin: 0;
+}
+
+code, pre {
+  font-family: 'Monaco', monospace;
+}
+
+img {
+  display: block;
+}
+
+.journal-page-body footer {
+  text-align: right;
+  line-height: 3;
+  margin-top: -1.4em;
+
+  a {
+    display: inline-block;
+    padding: 0 1em;
+  }
+}
+
+.pagination {
+  a, .page, .first, .last, .prev, .next {
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    line-height: 3em;
+    vertical-align: middle;
+    text-align: center;
+  }
+}
+
+.journal_posts-show {
+  .journal-page-body {
+    padding-bottom: 1.4em;
+  }
+}
+
+.footer {
+  text-align: center;
+}
+
+.footer-copyright {
+  font-size: .8em;
+  margin: 4em 0 4em;
+}
+
+/* Theme ------------------------------------------------------------------- */
+body {
+  color: $text-color;
+}
+
+h1, h2, h3 {
+  color: $header-color;
+}
+
+a {
+  color: $theme-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.journal-page-header h1 a {
+  color: $header-color;
+
+  &:hover {
+    color: $theme-color;
+    text-decoration: none;
+  }
+}
+
+.journal-post-header-categories,
+.journal-post-header-time {
+  font-size: 0.8em;
+  line-height: 2.5;
+}
+
+.journal-post-header-time {
+  margin-right: 0.5em;
+}
+
+.journal-post-header-categories a {
+  padding: 0.5em;
+  text-transform: uppercase;
+}
+
+.journal-page-body footer a {
+  font-size: 1.5em;
+  color: $text-color;
+
+  &:hover {
+    color: $white-color;
+    background-color: $theme-color;
+  }
+}
+
+.pagination {
+  a, .page, .first, .last, .prev, .next {
+
+    background-color: $theme-color;
+    color: $white-color;
+
+    &.current {
+      color: $text-color;
+      background-color: $white-color;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.footer-copyright {
+  opacity: 0.4;
+}

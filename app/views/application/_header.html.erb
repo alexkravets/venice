@@ -1,0 +1,17 @@
+<aside class="header">
+  <%= link_to root_path, class: "header-image" do %>
+    <%= sidebar_image_tag %>
+  <% end %>
+
+  <div class="header-tagline">
+    <%= sidebar_tagline %>
+  </div>
+
+  <nav class="header-menu">
+    <%= menu "Main Menu" %>
+  </nav>
+
+  <nav class="social-menu">
+    <%= social_links %>
+  </nav>
+</aside>

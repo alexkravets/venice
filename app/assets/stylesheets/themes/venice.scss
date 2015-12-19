@@ -1,0 +1,12 @@
+/* Options ================================================================= */
+$base-font-family: verdana, sans-serif!default;
+$white-color: #FFF!default;
+$text-color: #4D4D4D!default;
+$header-color: #333!default;
+$theme-color: #F04530!default;
+$secondary-color: #FAFAFA!default;
+
+/* Modules ================================================================= */
+@import "venice/base";
+@import "venice/desktop";
+@import "venice/mobile";

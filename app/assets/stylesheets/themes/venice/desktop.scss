@@ -1,0 +1,132 @@
+/* Desktop ----------------------------------------------------------------- */
+$desktop: "screen and (min-width:900px)";
+@media #{$desktop} {
+/* Layout ------------------------------------------------------------------ */
+  .container {
+    margin-left: 18.5em;
+  }
+
+  .header {
+    @include position(fixed, 0 null null 0);
+    width: 18.5em;
+    height: 100%;
+    text-align: center;
+  }
+
+  .footer {
+    @include position(fixed, null null 0 0);
+    width: 18.5em;
+  }
+
+  .header-image {
+    display: inline-block;
+    margin: 3em 0 0.5em;
+  }
+
+  .header-image img {
+    border-radius: 40px;
+    height: 80px;
+    width: 80px;
+  }
+
+  .header-tagline {
+    font-size: .9em;
+    line-height: 1.4em;
+    padding: 0 1.25em;
+  }
+
+  .header-menu {
+    margin: 2.5em 0;
+  }
+
+  .header-menu a {
+    font-weight: 600;
+    line-height: 2em;
+    display: block;
+  }
+
+  .social-menu {
+    font-size: 1.15em;
+    margin-top: 1em;
+
+    a {
+      padding: 0 0.15em;
+    }
+  }
+
+  .journal-page {
+    padding-top: 2em;
+
+    &:first-child {
+      padding-top: 4.25em;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .journal-page-header,
+  .journal-page-body {
+    max-width: 52em;
+    padding: 0 5em;
+  }
+
+  .journal-page-header h1 {
+    margin-top: 0;
+  }
+
+  .pagination {
+    padding: 2em 5em;
+  }
+
+  .journal_pages-preview,
+  .journal_pages-show,
+  .journal_posts-preview,
+  .journal_posts-show {
+    .journal-page-body {
+      padding-bottom: 5em;
+    }
+  }
+
+  .footer-copyright {
+    text-align: center;
+    margin: 1.4em;
+  }
+
+
+/* Theme ------------------------------------------------------------------- */
+  .header {
+    border-top: 3px solid $theme-color;
+    background-color: $secondary-color;
+  }
+
+  .container {
+    border-top: 3px solid $theme-color;
+  }
+
+  .header-image img {
+    border: 4px solid $white-color;
+  }
+
+  .social-menu a {
+    color: lighten($text-color, 50%);
+
+    &:hover {
+      color: $theme-color;
+      text-decoration: none;
+    }
+  }
+
+  .journal_posts-category,
+  .journal_posts-index {
+    .journal-page {
+      border-bottom: 0.5em solid $secondary-color;
+    }
+  }
+
+  .pagination,
+  .journal-page {
+    background-color: $white-color;
+  }
+}
