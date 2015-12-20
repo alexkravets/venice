@@ -24,7 +24,9 @@ $proxima-nova-family: "Proxima Nova", 'Helvetica Neue', Helvetica, Arial, 'Lucid
 
 /* Tablet ------------------------------------------------------------------ */
 @media #{$tablet} {
-  .sidebar, .header, .list:not(.list-aside) .items {
+  .sidebar,
+  .header,
+  .list:not(.list-aside) .items {
     font-family: $proxima-nova-family;
   }
 
