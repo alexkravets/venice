@@ -31,4 +31,4 @@ Before Setup S3 you will need:
 
 Run setup s3 script to create a new bucket, create user with permission only for new bucket on s3 and set appropriate variables to Heroku.
 
-`rake heroku:setup_s3`
+`rake deploy:setup_s3`

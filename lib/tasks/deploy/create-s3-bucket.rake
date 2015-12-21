@@ -1,46 +1,24 @@
-namespace :heroku do
-  desc "Setup s3 and add apropriate env variables to heroku"
+namespace :deploy do
+  desc "Setup s3"
   task :setup_s3 => :environment do
-    require 'heroku-api'
     require 'aws-sdk'
 
-    ap "Input your heroku login/emil"
-    heroku_login = STDIN.gets.chomp
-    ap "Input your heroku pass"
-    heroku_pass = STDIN.gets.chomp
-    ap "Input your amazon access_key_id"
-    access_key_id = STDIN.gets.chomp
-    ap "Input your amazon secret_access_key"
-    secret_access_key = STDIN.gets.chomp
+    access_key_id     = ENV["access_key_id"]
+    secret_access_key = ENV["secret_access_key"]
+    host              = ENV["host"]
+    app_name = host.gsub(".herokuapp.com", "")
+    setup_s3(app_name, access_key_id, secret_access_key)
 
-    if heroku_login && heroku_pass && access_key_id && secret_access_key
-      heroku = Heroku::API.new(:username => heroku_login, :password => heroku_pass)
-      apps = heroku.get_apps
-      our_app =
-      apps.body.max_by do |app|
-        app['created_at']
-      end
-
-      ap "Is #{our_app['name']} the app, what you want setup [y/n]"
-      choose = STDIN.gets.chomp
-      if choose == 'y'
-        setup_s3(our_app['name'], heroku, access_key_id, secret_access_key)
-      else
-        ap "Enter app_name, what you want setup"
-        app_name = STDIN.gets.chomp
-        setup_s3(app_name, heroku, access_key_id, secret_access_key)
-      end
-
-    else
-      ap "You don't set full set of credentials"
-    end
-
+    ## Results
+    puts @new_access_key_id
+    puts @new_secret_access_key
+    puts app_name
   end
 
 
-  def setup_s3(app_name, heroku, access_key_id, secret_access_key)
-    @new_access_key_id = ''
-    @new_secret_access_key = ''
+  def setup_s3(app_name, access_key_id, secret_access_key)
+    @new_access_key_id = ""
+    @new_secret_access_key = ""
     Aws.config.update({
       region: 'us-west-2',
       credentials: Aws::Credentials.new(access_key_id, secret_access_key)
@@ -55,9 +33,6 @@ namespace :heroku do
     create_user_access_key(app_name, iam)
     add_user_policy(app_name, iam)
 
-    heroku.put_config_vars(app_name, 'AWS_ACCESS_KEY_ID' => @new_access_key_id)
-    heroku.put_config_vars(app_name, 'AWS_SECRET_ACCESS_KEY' => @new_secret_access_key)
-    heroku.put_config_vars(app_name, 'FOG_DIRECTORY' => app_name)
   end
 
   def create_bucket(bucket_name, s3)

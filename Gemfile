@@ -15,6 +15,7 @@ gem "mongoid", "~> 5.0"
 gem "rack-host-redirect"
 gem "tape", github: "alexkravets/tape"
 gem "journal", github: "alexkravets/journal"
+gem 'aws-sdk', '~> 2'
 
 group :development do
   gem "spring"
