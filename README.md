@@ -18,7 +18,7 @@ Before deploy to heroku you will need:
 
 
 Run this deploy heroku script to set up create, connect and setup heroku app:
-`% ./bin/deploy_heroku.bash`
+`% ./bin/deploy-heroku <app_name>`
 
 
 ## Setup S3
@@ -31,4 +31,5 @@ Before Setup S3 you will need:
 
 Run setup s3 script to create a new bucket, create user with permission only for new bucket on s3 and set appropriate variables to Heroku.
 
-`rake deploy:setup_s3`
+`% ./bin/setup-s3 <access_key_id> <secret_access_key>`
+
