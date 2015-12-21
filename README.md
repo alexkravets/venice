@@ -26,7 +26,7 @@ Run this deploy heroku script to set up create, connect and setup heroku app:
 Before Setup S3 you will need:
 
 - Create account on amazon : [Amazon](http://aws.amazon.com/)
-- Add [s3 service](console.aws.amazon.com/console/home)
+- Add [s3 service](http://console.aws.amazon.com/console/home)
 - On Amazon [Create Access Key ID and Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html)
 
 Run setup s3 script to create a new bucket, create user with permission only for new bucket on s3 and set appropriate variables to Heroku.
