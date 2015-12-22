@@ -2,7 +2,9 @@
 
 *Where art meets technology.*
 
-`v` `e` `n` `i` `c` `e` is boilderplate website & blog implementation based on [Character](https://github.com/slate-studio/chr) library. It's used as boilerplate for new Rails projects or quick prototypes.
+`v` `e` `n` `i` `c` `e` is boilderplate website & blog implementation based on
+[Character](https://github.com/slate-studio/chr) library. It's used as
+boilerplate for new Rails projects or quick prototypes.
 
 Homepage: https://github.com/alexkravets/venice
 
@@ -10,7 +12,8 @@ Homepage: https://github.com/alexkravets/venice
 
 It assumes you have a machine equipped with Ruby & Mongodb.
 
-1. Install the Venice gem using the [RubyGems](https://rubygems.org) package manager:
+1. Install the Venice gem using the [RubyGems](https://rubygems.org) package
+manager:
 
   ```bash
   gem install venice-chr
@@ -40,9 +43,10 @@ Default admin account is `user@example.com`:`password`.
   venice deploy
   ```
 
-Default admin account: is `user@example.com`:`password`. After deploy is finished, please login and create new account, then remove default one.
+Default admin account: is `user@example.com`:`password`. After deploy is
+finished, please login and create a new account, then remove default one.
 
-- Start venice server:
+- Start Venice server:
 
   ```bash
   rails s
@@ -59,4 +63,5 @@ guidelines:
 3. Push your branch to your fork
 4. Post a [pull request](https://github.com/alexkravets/venice/compare).
 
-Thank you to all [the contributors](https://github.com/alexkraves/venice/contributors)!
+Thank you to all
+[the contributors](https://github.com/alexkraves/venice/contributors)!
