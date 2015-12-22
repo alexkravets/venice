@@ -22,6 +22,7 @@ gem "journal-chr"
 group :development do
   gem "spring"
   gem "web-console"
+  gem "heroku"
 end
 
 group :development, :test do

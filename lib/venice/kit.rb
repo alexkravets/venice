@@ -26,9 +26,9 @@ module Venice
     end
 
     desc "deploy", "Deploys the site to Heroku"
-    def deploy(app_name, platform = "heroku")
+    def deploy(platform = "heroku")
       puts "Deploying the site to Heroku"
-      system "bin/deploy-#{platform} #{app_name}"
+      system "bin/deploy-#{platform}"
     end
 
     desc "version", "Show Venice version"

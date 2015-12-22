@@ -15,6 +15,7 @@ bundle install
 # Rename database & and making first commit
 DEV_DB_NAME="${PWD##*/}_development"
 sed -i.bak "s/venice_development/${DEV_DB_NAME}/g" config/mongoid.yml
+rm config/mongoid.yml.bak
 
 # Seed data
 rake db:seed

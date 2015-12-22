@@ -32,11 +32,15 @@ We’ve also included some handy shortcuts with Venice:
   venice setup
   ```
 
+Default admin account is `user@example.com`:`password`.
+
 - Run the deploy (supported platforms: Heroku):
 
   ```bash
   venice deploy
   ```
+
+Default admin account: is `user@example.com`:`password`. After deploy is finished, please login and create new account, then remove default one.
 
 - Start venice server:
 

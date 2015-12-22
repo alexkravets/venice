@@ -3,14 +3,13 @@
 if git remote | grep heroku > /dev/null; then
   git push heroku master
 else
-  if [ "$*" == "" ]; then
-    echo "Please provide heroku application name."
+  read -p "Please provide Heroku application name: " APP_NAME
+
+  if [ APP_NAME == "" ]; then
+    echo "¯\_(ツ)_/¯"
     exit 1
   fi
 
-  APP_NAME="$1"
-
-  echo "Deploy to Heroku"
   heroku create "${APP_NAME}"
   heroku git:remote -a "${APP_NAME}"
   heroku config:set SMTP_ADDRESS=smtp.sendgrid.net \
