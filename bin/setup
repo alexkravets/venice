@@ -12,22 +12,23 @@ fi
 echo "Installing Dependencies..."
 bundle install
 
-# Remove Git remote if it's still the proteus-middleman repo
-if [ "$(git config --get remote.origin.url)" = "git@github.com:alexkravets/venice.git" ]; then
-  echo "What is your repo url? Enter URL or leave blank"
-  read url
-  if [ -z "$url" ]; then
-    git remote rename origin venice
-    git remote add origin "$url"
-  fi
-fi
-
 # Rename database & and making first commit
 DEV_DB_NAME="${PWD##*/}_development"
-sed "s/venice_development/${DEV_DB_NAME}/g" config/mongoid.yml > config/mongoid.yml
-
-# git add config/mongoid.yml
-# git commit -am "Update development database name."
+sed -i.bak "s/venice_development/${DEV_DB_NAME}/g" config/mongoid.yml
 
 # Seed data
 rake db:seed
+
+# Remove Git remote if it's still the venice repo (after cloning)
+if [ "$(git config --get remote.origin.url)" = "git@github.com:alexkravets/venice.git" ]; then
+  git remote rename origin venice
+
+  echo "What is your repo url? Enter URL or leave blank"
+  read url
+  if [ -z "$url" ]; then
+    git remote add origin "$url"
+
+    git add config/mongoid.yml
+    git commit -am "Update development database name."
+  fi
+fi
