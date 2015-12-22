@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+
+# Run this script immediately after cloning the codebase.
+
+# Make sure Bundler is installed
+if [ "$(gem query -i -n bundler)" = "false" ]; then
+  echo "Installing Bundler..."
+  gem install bundler
+fi
+
+# Set up Ruby dependencies via Bundler
+echo "Installing Dependencies..."
+bundle install
+
+# Remove Git remote if it's still the proteus-middleman repo
+if [ "$(git config --get remote.origin.url)" = "git@github.com:alexkravets/venice.git" ]; then
+  echo "What is your repo url? Enter URL or leave blank"
+  read url
+  if [ -z "$url" ]; then
+    git remote rename origin venice
+    git remote add origin "$url"
+  fi
+fi
+
+# Rename database & and making first commit
+DEV_DB_NAME="${PWD##*/}_development"
+sed "s/venice_development/${DEV_DB_NAME}/g" config/mongoid.yml > config/mongoid.yml
+
+# git add config/mongoid.yml
+# git commit -am "Update development database name."
+
+# Seed data
+rake db:seed
