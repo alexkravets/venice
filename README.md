@@ -1,4 +1,6 @@
 # Venice
+[![GitHub version](https://badge.fury.io/gh/alexkravets%2Fvenice.svg)](https://badge.fury.io/gh/alexkravets%2Fvenice)
+[![Code Climate](https://codeclimate.com/github/alexkravets/venice/badges/gpa.svg)](https://codeclimate.com/github/alexkravets/venice)
 
 *Where art meets technology.*
 
@@ -51,6 +53,27 @@ finished, please login and create a new account, then remove default one.
   ```bash
   rails s
   ```
+
+## Related Gems
+
+Venice is based on a bunch of open source gems. You might be interested to have
+a look into those to get better understanding of how things do work inside:
+
+- [Character](https://github.com/slate-studio/chr): Powerful responsive
+javascript CMS for apps
+- [Formagic](https://github.com/slate-studio/formagic): Building forms with
+CoffeeScript
+- [Journal](https://github.com/alexkravets/journal): Posts and pages
+implementation with templates and CMS modules
+- [Tape](https://github.com/alexkravets/tape): Basic RSS reader that integrates
+into CMS
+- [Ants](https://github.com/slate-studio/ants): Utility gem with helpers and
+concerns that are used on the backend and CMS
+- [Loft](https://github.com/slate-studio/loft): Media assets manager for
+Character CMS
+- [Mongosteen](https://github.com/slate-studio/mongosteen): An easy way to add
+RESTful actions for Mongoid models
+
 
 ## Contributing
 
