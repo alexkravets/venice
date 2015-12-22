@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+gemspec
 ruby "2.2.3"
 
 gem "rails", "~> 4.2.5"
@@ -15,8 +16,8 @@ gem "mongoid", "~> 5.0"
 gem "fog"
 gem "fog-aws"
 gem "rack-host-redirect"
-gem "tape", github: "alexkravets/tape"
-gem "journal", github: "alexkravets/journal"
+gem "tape-chr"
+gem "journal-chr"
 
 group :development do
   gem "spring"
