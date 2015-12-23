@@ -72,7 +72,7 @@ concerns that are used on the backend and CMS
 - [Loft](https://github.com/slate-studio/loft): Media assets manager for
 Character CMS
 - [Mongosteen](https://github.com/slate-studio/mongosteen): An easy way to add
-RESTful actions for Mongoid models
+CRUD actions for Mongoid models
 
 
 ## Contributing
