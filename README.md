@@ -22,39 +22,37 @@ manager:
   gem install venice-chr
   ```
 
-2. Then kick off a new project:
+2. Then kick off a new project & start local server:
 
   ```bash
   venice new your-project-name
-  ```
-
-
-## Shortcuts
-
-We’ve also included some handy shortcuts with Venice:
-
-- Install dependencies and clear the Git remote:
-
-  ```bash
+  cd your-project-name
   venice setup
-  ```
-
-Default admin account is `user@example.com`:`password`.
-
-- Run the deploy (supported platforms: Heroku):
-
-  ```bash
-  venice deploy
-  ```
-
-Default admin account: is `user@example.com`:`password`. After deploy is
-finished, please login and create a new account, then remove default one.
-
-- Start Venice server:
-
-  ```bash
   rails s
   ```
+
+*Default admin account is `user@example.com`:`password`.*
+
+
+## Deploy to Heroku
+
+  ```bash
+  venice deploy heroku APPLICATION_NAME
+  bin/heroku/add-s3 KEY SECRET BUCKET [REGION]
+  ```
+
+*Default admin account: is `user@example.com`:`password`. After deploy is
+finished, please login and create a new account, then remove default one.*
+
+
+## Deploy to Digital Ocean
+
+  ```bash
+  venice deploy digital-ocean HOST
+  ```
+
+*Default admin account: is `user@example.com`:`password`. After deploy is
+finished, please login and create a new account, then remove default one.*
 
 
 ## Under the Hood
