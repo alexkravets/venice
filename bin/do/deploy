@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$*" == "" ]; then
-  echo "Please provide host/api, see: https://cloud.digitalocean.com/droplets"
+  echo "Please provide host/ip, see: https://cloud.digitalocean.com/droplets"
   exit 1
 fi
 
