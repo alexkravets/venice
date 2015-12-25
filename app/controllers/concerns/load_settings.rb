@@ -18,6 +18,12 @@ module LoadSettings
         website_logo_url: '',
         website_url: ''
       })
+      SettingsObject.create(title: 'styles', values: {
+        css: ''
+      })
+      SettingsObject.create(title: 'scripts', values: {
+        javascript: ''
+      })
     end
   end
 end
