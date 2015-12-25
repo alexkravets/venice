@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ "$*" == "" ]; then
+  echo "Please provide host/api, see: https://cloud.digitalocean.com/droplets"
+  exit 1
+fi
+
 HOST="$1"
 GIT_URL=$(git config --get remote.origin.url)
 
