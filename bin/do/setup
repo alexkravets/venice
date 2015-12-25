@@ -4,6 +4,7 @@
 # -------------------------------------------------
 GIT_URL="$1"
 HOST="$2"
+MONGO_PASS=$(date +%s | sha256sum | base64 | head -c 32 ; echo)
 
 sudo apt-get update
 sudo apt-get -y install language-pack-UTF-8
@@ -23,27 +24,28 @@ echo "Installing Mongo DB"
 sudo apt-get install -y mongodb-org
 export LC_ALL=C
 # Create `rails` mongodb user in venice db:
-mongo --eval "conn = new Mongo(); db = conn.getDB('venice'); db.createUser({user:'rails', pwd:'7lrn8s1jn2bcig6sf62f8dur2m', roles:['readWrite']})"
+mongo --eval "conn = new Mongo(); db = conn.getDB('venice'); db.createUser({user:'rails', pwd:'$MONGO_PASS', roles:['readWrite']})"
 
 adduser rails --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
+
+# Clone git
+cd ~rails
+git clone $GIT_URL rails_project
+cd ~rails/rails_project
+# Fetch ruby version
+RUBY_VERSION=$(grep 'ruby ' Gemfile | cut -d '"' -f 2)
 
 ## Install RVM
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -L get.rvm.io | bash -s stable
 source /usr/local/rvm/scripts/rvm
 rvm requirements
-rvm install 2.2.3
-rvm use 2.2.3 --default
+rvm install $RUBY_VERSION
+rvm use $RUBY_VERSION --default
 rvm rubygems current
 
 gem install bundler
-
-# Clone git
-cd ~rails
-git clone "${GIT_URL}" rails_project
-cd ~rails/rails_project
 bundle install
-
 ## Compile assets:
 bundle exec rake assets:precompile
 
@@ -117,15 +119,15 @@ PID=/var/run/unicorn.pid
 RAILS_ENV="production"
 UNICORN_OPTS="-D -c \$CONFIG_RB -E \$RAILS_ENV"
 
-PATH=/usr/local/rvm/rubies/ruby-2.2.3/bin:/usr/local/sbin:/usr/bin:/bin:/sbin:/usr/local/rvm/bin:/usr/local/rvm/gems/ruby-2.2.3@global/bin:/usr/local/rvm/gems/ruby-2.2.3/bin/
-export GEM_HOME=/usr/local/rvm/gems/ruby-2.2.3
-export GEM_PATH=/usr/local/rvm/gems/ruby-2.2.3:/usr/local/rvm/gems/ruby-2.2.3@global
+PATH=/usr/local/rvm/rubies/$RUBY_VERSION/bin:/usr/local/sbin:/usr/bin:/bin:/sbin:/usr/local/rvm/bin:/usr/local/rvm/gems/$RUBY_VERSION@global/bin:/usr/local/rvm/gems/$RUBY_VERSION/bin/
+export GEM_HOME=/usr/local/rvm/gems/$RUBY_VERSION
+export GEM_PATH=/usr/local/rvm/gems/$RUBY_VERSION:/usr/local/rvm/gems/$RUBY_VERSION@global
 DAEMON="\$APP_ROOT/bin/bundle exec unicorn"
 
 # Generate by running \`rake -f /home/rails/rails_project/Rakefile secret\`
-export SECRET_KEY_BASE="${SECRET_KEY_BASE}"
-export MONGODB_URI=mongodb://rails:7lrn8s1jn2bcig6sf62f8dur2m@127.0.0.1:27017/venice
-export HOST="${HOST}"
+export SECRET_KEY_BASE=$SECRET_KEY_BASE
+export MONGODB_URI=mongodb://rails:$MONGO_PASS@127.0.0.1:27017/venice
+export HOST=$HOST
 export SMTP_ADDRESS=placeholder
 export SMTP_DOMAIN=placeholder
 export SMTP_PASSWORD=placeholder
