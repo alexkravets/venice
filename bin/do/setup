@@ -99,6 +99,18 @@ stdout_path "/var/log/unicorn/unicorn.log"
 EOT
 
 SECRET_KEY_BASE=$(rake -f /home/rails/rails_project/Rakefile secret)
+cat <<EOT >> /var/rails_vars
+# Generate by running \`rake -f /home/rails/rails_project/Rakefile secret\`
+export SECRET_KEY_BASE=$SECRET_KEY_BASE
+export MONGODB_URI=mongodb://rails:$MONGO_PASS@127.0.0.1:27017/venice
+export HOST=$HOST
+export SMTP_ADDRESS=placeholder
+export SMTP_DOMAIN=placeholder
+export SMTP_PASSWORD=placeholder
+export SMTP_USERNAME=placeholder
+EOT
+sudo chmod +x /var/rails_vars
+
 cat <<EOT >> /etc/default/unicorn
 # Change paramentres below to appropriate values and set CONFIGURED to yes.
 CONFIGURED=yes
@@ -124,14 +136,7 @@ export GEM_HOME=/usr/local/rvm/gems/$RUBY_VERSION
 export GEM_PATH=/usr/local/rvm/gems/$RUBY_VERSION:/usr/local/rvm/gems/$RUBY_VERSION@global
 DAEMON="\$APP_ROOT/bin/bundle exec unicorn"
 
-# Generate by running \`rake -f /home/rails/rails_project/Rakefile secret\`
-export SECRET_KEY_BASE=$SECRET_KEY_BASE
-export MONGODB_URI=mongodb://rails:$MONGO_PASS@127.0.0.1:27017/venice
-export HOST=$HOST
-export SMTP_ADDRESS=placeholder
-export SMTP_DOMAIN=placeholder
-export SMTP_PASSWORD=placeholder
-export SMTP_USERNAME=placeholder
+. /var/rails_vars
 EOT
 
 cat <<EOT >> /etc/init.d/unicorn
