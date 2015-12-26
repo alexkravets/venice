@@ -6,7 +6,7 @@ namespace :deploy do
     @access_key_id = ENV["key"]
     @secret_access_key = ENV["secret"]
     @bucket_name = ENV["bucket"]
-    @region = ENV["region"].presence || "us-west-1"
+    @region = ENV["region"].presence || "us-east-1"
     @user_name = @bucket_name
 
     connect_aws

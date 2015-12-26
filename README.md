@@ -36,20 +36,18 @@ manager:
 
 ## Deploy to Heroku
 
-**Prerequisites**
-
 1. Create Heroku account
-  - https://heroku.com
+  - [Heroku | Sign up](https://signup.heroku.com/)
 
-2. Generate ssh keys (if you don't have ones)
- - https://help.github.com/articles/generating-ssh-keys/
+2. Generate local ssh keys (if you don't have ones)
+  - [Generating SSH keys](https://help.github.com/articles/generating-ssh-keys)
 
   ```bash
   ssh-keygen -t rsa
   ```
 
-3. Add ssh keys to Heroku
-  - https://devcenter.heroku.com/articles/keys
+3. Add local ssh keys to Heroku
+  - [Heroku | Managing Your SSH Keys](https://devcenter.heroku.com/articles/keys)
 
   ```bash
   heroku keys:add
@@ -59,24 +57,25 @@ manager:
 `APPLICATION_NAME`.herokuapp.com
 
 5. Create AWS account
-  - http://aws.amazon.com/
+  - [AWS | Sign up](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html)
 
 6. Create access `KEY` and `SECRET` for AWS account
-  - http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html
+  - [AWS | Getting Your Access Key ID and Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html)
 
 7. Add AWS S3 service to your AWS account
-  - http://console.aws.amazon.com/console/home
+  - [AWS | Console](http://console.aws.amazon.com/console/home)
 
-8. Pick `REGION` for Heroku application and S3 bucket: `us-east-1` or `eu-west-1`
-  - https://devcenter.heroku.com/articles/regions#data-center-locations
-  - https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+8. Pick `REGION` for Heroku application and S3 bucket:
+`us-east-1` or `eu-west-1`
+  - [Heroku | Regions](https://devcenter.heroku.com/articles/regions#data-center-locations)
+  - [AWS | S3 Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region)
 
-**Deploy**
+9. Deploy new Heroku application
 
-```bash
-venice deploy heroku APPLICATION_NAME
-bin/heroku/add-s3 KEY SECRET BUCKET [REGION]
-```
+  ```bash
+  venice deploy heroku APPLICATION_NAME
+  bin/heroku/add-s3 KEY SECRET BUCKET [REGION]
+  ```
 
 **IMPORTANT:** *Default admin account: is `user@example.com`:`password`. After
 deploy is finished, please login and create a new account, then remove default
@@ -113,7 +112,8 @@ concerns that are used on the backend and CMS
 Character CMS
 - [Mongosteen](https://github.com/slate-studio/mongosteen): An easy way to add
 CRUD actions for Mongoid models
-- [Devise](https://github.com/plataformatec/devise): Flexible authentication solution for Rails with Warden
+- [Devise](https://github.com/plataformatec/devise): Flexible authentication
+solution for Rails with Warden
 
 
 ## Contributing

@@ -11,13 +11,13 @@ KEY="$1"
 SECRET="$2"
 REGION="$3"
 
-echo "Create S3 bucket: $BUCKET"
+echo "Creating S3 bucket: $BUCKET"
 VARS=$(rake deploy:create_s3_bucket key="${KEY}" secret="${SECRET}" bucket="${BUCKET}" region="${REGION}")
 arr=(${VARS//\\n/ })
 AWS_ACCESS_KEY_ID="${arr[0]}"
 AWS_SECRET_ACCESS_KEY="${arr[1]}"
 
-echo "Add S3 credentials to Heroku app ENV"
+echo "Adding S3 credentials to Heroku app ENV"
 heroku config:set AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
                   AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
                   FOG_DIRECTORY="${BUCKET}"
