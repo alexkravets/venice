@@ -66,14 +66,14 @@ manager:
   - [AWS | Console](http://console.aws.amazon.com/console/home)
 
 8. Pick `REGION` for Heroku application and S3 bucket:
-`us-east-1` or `eu-west-1`
+`us-east-1` (default) or `eu-west-1`
   - [Heroku | Regions](https://devcenter.heroku.com/articles/regions#data-center-locations)
   - [AWS | S3 Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region)
 
-9. Deploy new Heroku application
+9. Deploy application to Heroku
 
   ```bash
-  venice deploy heroku APPLICATION_NAME
+  venice deploy heroku APPLICATION_NAME [REGION]
   bin/heroku/add-s3 KEY SECRET BUCKET [REGION]
   ```
 
