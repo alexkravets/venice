@@ -38,16 +38,18 @@ manager:
 
 **Prerequisites**
 
-1. Create [Heroku](https://heroku.com) account
+1. Create Heroku account
+  - https://heroku.com
 
-2. Generate ssh keys (if you don't have ones),
-https://help.github.com/articles/generating-ssh-keys/
+2. Generate ssh keys (if you don't have ones)
+ - https://help.github.com/articles/generating-ssh-keys/
 
   ```bash
   ssh-keygen -t rsa
   ```
 
-3. Add ssh keys to Heroku, https://devcenter.heroku.com/articles/keys
+3. Add ssh keys to Heroku
+  - https://devcenter.heroku.com/articles/keys
 
   ```bash
   heroku keys:add
@@ -56,19 +58,18 @@ https://help.github.com/articles/generating-ssh-keys/
 4. Choose available `APPLICATION_NAME` on heroku, check using url
 `APPLICATION_NAME`.herokuapp.com
 
-5. Create [AWS](http://aws.amazon.com/) account
+5. Create AWS account
+  - http://aws.amazon.com/
 
-6. Create AWS user access `KEY` and `SECRET`,
-http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html
+6. Create access `KEY` and `SECRET` for AWS account
+  - http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html
 
-7. Add [AWS S3](http://console.aws.amazon.com/console/home) service
+7. Add AWS S3 service to your AWS account
+  - http://console.aws.amazon.com/console/home
 
-8. Pick `REGION` for Heroku application and S3 bucket, `us-east-1` or `eu-west-1`
-
+8. Pick `REGION` for Heroku application and S3 bucket: `us-east-1` or `eu-west-1`
   - https://devcenter.heroku.com/articles/regions#data-center-locations
   - https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
-
-Run setup-s3 script to create a new bucket, create user with permission only for new bucket on s3 and set appropriate variables to Heroku.
 
 **Deploy**
 
