@@ -36,23 +36,61 @@ manager:
 
 ## Deploy to Heroku
 
+**Prerequisites**
+
+1. Create [Heroku](https://heroku.com) account
+
+2. Generate ssh keys (if you don't have ones),
+https://help.github.com/articles/generating-ssh-keys/
+
   ```bash
-  venice deploy heroku APPLICATION_NAME
-  bin/heroku/add-s3 KEY SECRET BUCKET [REGION]
+  ssh-keygen -t rsa
   ```
 
-*Default admin account: is `user@example.com`:`password`. After deploy is
-finished, please login and create a new account, then remove default one.*
+3. Add ssh keys to Heroku, https://devcenter.heroku.com/articles/keys
+
+  ```bash
+  heroku keys:add
+  ```
+
+4. Choose available `APPLICATION_NAME` on heroku, check using url
+`APPLICATION_NAME`.herokuapp.com
+
+5. Create [AWS](http://aws.amazon.com/) account
+
+6. Create AWS user access `KEY` and `SECRET`,
+http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html
+
+7. Add [AWS S3](http://console.aws.amazon.com/console/home) service
+
+8. Pick `REGION` for Heroku application and S3 bucket, `us-east-1` or `eu-west-1`
+
+  - https://devcenter.heroku.com/articles/regions#data-center-locations
+  - https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+
+Run setup-s3 script to create a new bucket, create user with permission only for new bucket on s3 and set appropriate variables to Heroku.
+
+**Deploy**
+
+```bash
+venice deploy heroku APPLICATION_NAME
+bin/heroku/add-s3 KEY SECRET BUCKET [REGION]
+```
+
+**IMPORTANT:** *Default admin account: is `user@example.com`:`password`. After
+deploy is finished, please login and create a new account, then remove default
+one.*
 
 
 ## Deploy to Digital Ocean
 
-  ```bash
-  venice deploy digital-ocean HOST
-  ```
+```bash
+venice deploy digital-ocean HOST
+```
 
-*Default admin account: is `user@example.com`:`password`. After deploy is
-finished, please login and create a new account, then remove default one.*
+**IMPORTANT:** *Default admin account: is `user@example.com`:`password`. After
+deploy is finished, please login and create a new account, then remove default
+one.*
 
 
 ## Under the Hood
