@@ -17,7 +17,7 @@ apt-get -y install nodejs
 # Add public key:
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 # Create a list file for MongoDB:
-echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.0.list
 # ​Reload local package database:
 apt-get update
 echo "Installing Mongo DB"
@@ -37,6 +37,7 @@ RUBY_VERSION=$(grep 'ruby ' Gemfile | cut -d '"' -f 2)
 
 ## Install RVM
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 curl -L get.rvm.io | bash -s stable
 source /usr/local/rvm/scripts/rvm
 rvm requirements
@@ -133,9 +134,9 @@ RAILS_ENV="production"
 UNICORN_OPTS="-D -c \$CONFIG_RB -E \$RAILS_ENV"
 
 RUBY_VERSION=$RUBY_VERSION
-PATH=/usr/local/rvm/rubies/$RUBY_VERSION/bin:/usr/local/sbin:/usr/bin:/bin:/sbin:/usr/local/rvm/bin:/usr/local/rvm/gems/$RUBY_VERSION@global/bin:/usr/local/rvm/gems/$RUBY_VERSION/bin/
-export GEM_HOME=/usr/local/rvm/gems/$RUBY_VERSION
-export GEM_PATH=/usr/local/rvm/gems/$RUBY_VERSION:/usr/local/rvm/gems/$RUBY_VERSION@global
+PATH=/usr/local/rvm/rubies/\$RUBY_VERSION/bin:/usr/local/sbin:/usr/bin:/bin:/sbin:/usr/local/rvm/bin:/usr/local/rvm/gems/\$RUBY_VERSION@global/bin:/usr/local/rvm/gems/\$RUBY_VERSION/bin/
+export GEM_HOME=/usr/local/rvm/gems/\$RUBY_VERSION
+export GEM_PATH=/usr/local/rvm/gems/\$RUBY_VERSION:/usr/local/rvm/gems/\$RUBY_VERSION@global
 DAEMON="\$APP_ROOT/bin/bundle exec unicorn"
 
 . /etc/default/rails_project
