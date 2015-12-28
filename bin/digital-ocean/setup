@@ -75,7 +75,7 @@ server {
                     try_files \$uri @app;
             }
 
-     location @app {
+    location @app {
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
             proxy_set_header Host \$http_host;
             proxy_redirect off;
@@ -256,11 +256,12 @@ esac
 EOT
 
 chmod +x /etc/init.d/unicorn
+# adds unicorn to rc.d links
 update-rc.d unicorn defaults
-service unicorn restart
+service unicorn start
 service nginx restart
 # --------------------------------------------------------------
 
 # Setup DB
-. /etc/default/unicorn
+source /etc/default/unicorn
 RAILS_ENV=production rake db:seed
