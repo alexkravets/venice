@@ -1,10 +1,21 @@
 #!/bin/sh
 
-# On Server
-# -------------------------------------------------
+# -----------------------------------------------------------------------------
+# Parameters
+# -----------------------------------------------------------------------------
 GIT_URL="$1"
 HOST="$2"
 MONGO_PASS=$(date +%s | sha256sum | base64 | head -c 32 ; echo)
+
+# -----------------------------------------------------------------------------
+# Swap
+# -----------------------------------------------------------------------------
+echo "Adding swap"
+fallocate -l 1G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
 
 apt-get update
 apt-get -y install language-pack-UTF-8
@@ -13,7 +24,9 @@ apt-get -y install imagemagick
 apt-get -y install git-core
 apt-get -y install nodejs
 
-## MongoDB 3
+# -----------------------------------------------------------------------------
+# MongoDB 3
+# -----------------------------------------------------------------------------
 # Add public key:
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 # Create a list file for MongoDB:
@@ -28,6 +41,9 @@ mongo --eval "conn = new Mongo(); db = conn.getDB('venice'); db.createUser({user
 
 adduser rails --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-login
 
+# -----------------------------------------------------------------------------
+# Repository
+# -----------------------------------------------------------------------------
 # Clone git
 cd ~rails
 git clone $GIT_URL rails_project
@@ -35,7 +51,9 @@ cd ~rails/rails_project
 # Fetch ruby version
 RUBY_VERSION=$(grep 'ruby ' Gemfile | cut -d '"' -f 2)
 
-## Install RVM
+# -----------------------------------------------------------------------------
+# RVM
+# -----------------------------------------------------------------------------
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 curl -L get.rvm.io | bash -s stable
@@ -53,8 +71,9 @@ bundle exec rake assets:precompile
 
 chown -R rails: /home/rails/rails_project
 
-## Setup Nginx
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Nginx
+# -----------------------------------------------------------------------------
 apt-get -y install nginx
 cat <<EOT >> /etc/nginx/sites-available/rails
 upstream app_server {
@@ -85,10 +104,10 @@ server {
 EOT
 rm /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/rails /etc/nginx/sites-enabled/rails
-# --------------------------------------------------------------
 
-## Unicorn
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Unicorn
+# -----------------------------------------------------------------------------
 mkdir /var/log/unicorn/
 cat <<EOT >> /etc/unicorn.conf
 listen "unix:/var/run/unicorn.sock"
@@ -260,8 +279,9 @@ chmod +x /etc/init.d/unicorn
 update-rc.d unicorn defaults
 service unicorn start
 service nginx restart
-# --------------------------------------------------------------
 
-# Setup DB
+# -----------------------------------------------------------------------------
+# Seed
+# -----------------------------------------------------------------------------
 source /etc/default/unicorn
 RAILS_ENV=production rake db:seed
