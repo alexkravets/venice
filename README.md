@@ -158,4 +158,4 @@ guidelines:
 4. Post a [pull request](https://github.com/alexkravets/venice/compare).
 
 Thank you to all
-[the contributors](https://github.com/alexkraves/venice/contributors)!
+[the contributors](https://github.com/alexkravets/venice/contributors)!
