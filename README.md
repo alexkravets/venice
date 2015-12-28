@@ -90,6 +90,30 @@ one.*
 
 ## Deploy to Digital Ocean
 
+1. Create Digital Ocean account
+  - [Digital Ocean | Sign up](https://cloud.digitalocean.com/registrations/new)
+
+2. Generate local ssh keys (if you don't have ones)
+  - [Generating SSH keys](https://help.github.com/articles/generating-ssh-keys)
+
+  ```bash
+  ssh-keygen -t rsa
+  ```
+
+3. Add local ssh keys to Digital Ocean
+  - Copy ssh key from `cat ~/.ssh/id_rsa.pub`
+  - Paste in: [Digital Ocean | Security](https://cloud.digitalocean.com/settings/security)
+
+4. Create a droplet
+  - [Digital Ocean | Create Droplet](https://cloud.digitalocean.com/droplets/new)
+    - In `Choose an image` choose ubuntu.
+    - Choose your ssh key in `Add your SSH keys`
+
+5. Get Droplet IP Address
+  - [Digital Ocean | Droplets](https://cloud.digitalocean.com/droplets)
+
+6. Deploy application to Digital Ocean (You can use IP instead of HOST if Domain not configured)
+
 ```bash
 venice deploy digital-ocean HOST
 ```
