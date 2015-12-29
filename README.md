@@ -4,9 +4,9 @@
 
 *Where art meets technology.*
 
-`v` `e` `n` `i` `c` `e` is boilderplate website & blog implementation based on
+`v` `e` `n` `i` `c` `e` — website boilerplate and blog implementation based on
 [Character](https://github.com/slate-studio/chr) library. It's used as
-boilerplate for new Rails projects or quick prototypes.
+foundation for new Rails projects or quick prototypes.
 
 Homepage: https://github.com/alexkravets/venice
 
